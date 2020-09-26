@@ -5,7 +5,7 @@ import time
 import metapy
 import pytoml
 
-from scipy import stats
+#from scipy import stats
 
 class InL2Ranker(metapy.index.RankingFunction):
     """
@@ -98,10 +98,10 @@ if __name__ == '__main__':
     with open('inl2.avg_p.txt', 'w') as f:
         for item in list_avg_p_inl2:
             f.write("%s\n" % item)
-    p = stats.ttest_rel(list_avg_p_bm25, list_avg_p_inl2)
-    print("p: {}".format(p))
-    with open('significance.txt', 'w') as f:
-        f.write("%s" % p.pvalue)
+    #p = stats.ttest_rel(list_avg_p_bm25, list_avg_p_inl2)
+    #print("p: {}".format(p))
+    #with open('significance.txt', 'w') as f:
+    #    f.write("%s" % p.pvalue)
     print("Mean average precision BM25: {}".format(ev_bm25.map()))
     print("Mean average precision INL2: {}".format(ev_inl2.map()))
     print("Elapsed: {} seconds".format(round(time.time() - start_time, 4)))
