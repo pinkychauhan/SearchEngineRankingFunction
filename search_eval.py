@@ -11,8 +11,8 @@ class InL2Ranker(metapy.index.RankingFunction):
     """
     Create a new ranking function in Python that can be used in MeTA.
     """
-    def __init__(self, param=1.0):
-        self.param = param
+    def __init__(self, some_param=1.0):
+        self.some_param = some_param
         # You *must* call the base class constructor here!
         super(InL2Ranker, self).__init__()
 
@@ -24,9 +24,9 @@ class InL2Ranker(metapy.index.RankingFunction):
         """
         tfn = sd.doc_term_count * (math.log((1 + (sd.avg_dl/sd.doc_size)), 2))
 
-        score = sd.query_term_weight * (tfn/(tfn + self.param)) * (math.log((sd.num_docs + 1)/(sd.corpus_term_count + 0.5), 2))
+        score = sd.query_term_weight * (tfn/(tfn + self.some_param)) * (math.log((sd.num_docs + 1)/(sd.corpus_term_count + 0.5), 2))
 
-        #return (self.param + sd.doc_term_count) / (self.param * sd.doc_unique_terms + sd.doc_size)
+        #return (self.some_param + sd.doc_term_count) / (self.some_param * sd.doc_unique_terms + sd.doc_size)
         return score
 
 def load_ranker_bm25(cfg_file):
@@ -48,7 +48,7 @@ def load_ranker_inl2(cfg_file):
     configuration file used to load the index. You can ignore this for MP2.
     """
 
-    return InL2Ranker(param=2.0)
+    return InL2Ranker(some_param=2.0)
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
